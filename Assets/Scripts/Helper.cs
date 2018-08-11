@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Helper {
 
-    public void PrintArray()
+    public static void PrintArray()
     {
         
     }
 
-    public static void SetTransparent(Image image , float trans)
+    public static void SetTransparent(Image image , float alpha)
     {
-        image.color = new Color(image.color.r,image.color.g,image.color.b,trans);
+        image.color = new Color(image.color.r,image.color.g,image.color.b,alpha);
     }
 
 }
