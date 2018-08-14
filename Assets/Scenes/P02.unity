@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Continue
 --- !u!222 &25372071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -978,6 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 359254992}
   - component: {fileID: 359254993}
+  - component: {fileID: 359254994}
   m_Layer: 0
   m_Name: Vedio
   m_TagString: Untagged
@@ -1005,7 +1006,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359254991}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: e95168068dd4ffd4a91b37c81f820193, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: b2819ecf2627e4c44a8ad649758ab121, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 432937297}
@@ -1016,19 +1017,33 @@ VideoPlayer:
   m_RenderMode: 1
   m_AspectRatio: 5
   m_DataSource: 0
-  m_PlaybackSpeed: 7.1
+  m_PlaybackSpeed: 5
   m_AudioOutputMode: 1
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
+--- !u!114 &359254994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359254991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5d4bde19389ab4ca31cdfea391ecc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReplayUI: {fileID: 276644290}
 --- !u!1 &382778528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1796,7 @@ MonoBehaviour:
   P2_UI3: {fileID: 1764778110}
   P2_UI_PlayMovie: {fileID: 764232354}
   P2_UI_Next: {fileID: 276644290}
+  Video: {fileID: 359254991}
 --- !u!1 &1043835085
 GameObject:
   m_ObjectHideFlags: 0

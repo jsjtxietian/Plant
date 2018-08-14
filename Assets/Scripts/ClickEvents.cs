@@ -5,21 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ClickEvents : MonoBehaviour
 {
-#region P01
+    #region P01
+
     public void P01ToP02()
     {
         SceneManager.LoadScene("P02");
     }
 
-#endregion
+    #endregion
 
-#region P02
+    #region P02
+
     public GameObject P2_UI1;
     public GameObject P2_UI2;
     public GameObject P2_UI3;
     public GameObject P2_UI_PlayMovie;
     public GameObject P2_UI_Next;
-
+    public GameObject Video;
 
 
     public void P02_1_2()
@@ -42,16 +44,17 @@ public class ClickEvents : MonoBehaviour
 
     public void PlayMovie() //P02 teaching movie
     {
-        
+        P2_UI_PlayMovie.SetActive(false);
+        Video.SetActive(true);
     }
 
     public void Replay() // P02 replay teaching movie
     {
-        
+        P2_UI_Next.SetActive(false);
+        Video.SetActive(true);
     }
 
-
-#endregion
+    #endregion
 
 
     public void ToLevelSelection()
