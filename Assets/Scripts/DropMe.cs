@@ -23,6 +23,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
         Sprite dropSprite = GetDropSprite(data);
         if (dropSprite != null)
         {
+            //todo MVC
             receivingImage.sprite = dropSprite;
             isInstruction = true;
         }

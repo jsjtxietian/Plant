@@ -23,8 +23,10 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
 		m_DraggingIcons[eventData.pointerId].transform.SetParent (canvas.transform, false);
 		m_DraggingIcons[eventData.pointerId].transform.SetAsLastSibling();
-		
-		var image = m_DraggingIcons[eventData.pointerId].AddComponent<Image>();
+	    m_DraggingIcons[eventData.pointerId].transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+
+
+        var image = m_DraggingIcons[eventData.pointerId].AddComponent<Image>();
 		// The icon will be under the cursor.
 		// We want it to be ignored by the event system.
 		var group = m_DraggingIcons[eventData.pointerId].AddComponent<CanvasGroup>();

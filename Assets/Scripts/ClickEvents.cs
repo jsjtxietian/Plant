@@ -68,7 +68,6 @@ public class ClickEvents : MonoBehaviour
     public void HideHint()
     {
         HintUI.SetActive(false);
-        Debug.Log("fuck");
     }
 
     #endregion
