@@ -56,6 +56,22 @@ public class ClickEvents : MonoBehaviour
 
     #endregion
 
+    #region Level
+
+    public GameObject HintUI;
+
+    public void ShowHint()
+    {
+        HintUI.SetActive(true);
+    }
+
+    public void HideHint()
+    {
+        HintUI.SetActive(false);
+        Debug.Log("fuck");
+    }
+
+    #endregion
 
     public void ToLevelSelection()
     {
