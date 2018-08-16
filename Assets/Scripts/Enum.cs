@@ -6,6 +6,7 @@ using System.Text;
 public enum Command
 {
     None,
+    Active,
     Up,
     Down,
     Left,

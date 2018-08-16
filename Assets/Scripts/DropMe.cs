@@ -7,9 +7,11 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 {
     public Image receivingImage;
     private bool isInstruction;
+    public GameObject Controller ;
 
     public void OnEnable()
     {
+        Controller = GameObject.Find("Controller");
         Helper.SetTransparent(receivingImage, 0f);
         isInstruction = false;
     }
@@ -27,7 +29,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
             //receivingImage.sprite = dropSprite;
 
             Coordinate self = gameObject.GetComponent<CommandSpriteController>().GetCoordinate();
-            Instructions.CommandList[self.x, self.y] = Helper.GetTypeFromString(dropSprite.name);
+            Controller.GetComponent<Instructions>().AddCommand(self.x, self.y, Helper.GetCommandTypeFromString(dropSprite.name));
             isInstruction = true;
         }
     }

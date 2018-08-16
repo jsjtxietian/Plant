@@ -38,7 +38,7 @@ public class Helper : MonoBehaviour
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
 
-    public static Command GetTypeFromString(string spriteName)
+    public static Command GetCommandTypeFromString(string spriteName)
     {
         if (spriteName.Contains("forward"))
             return Command.Up;
@@ -69,5 +69,16 @@ public class Helper : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public static Hand GetHandTypeFromString(string spritename)
+    {
+        if (spritename.Contains("small"))
+            return Hand.Small;
+        else if (spritename.Contains("big"))
+            return Hand.Big;
+        else if (spritename.Contains("human"))
+            return Hand.Human;
+        else return Hand.None;
     }
 }
