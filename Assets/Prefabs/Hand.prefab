@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224133742478921650}
   - component: {fileID: 222229683297812704}
   - component: {fileID: 114192405392013558}
+  - component: {fileID: 114340030531748550}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -55,6 +56,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114340030531748550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470429037570340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc02c0aed9ff38e469ff4a41788c8382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 0}
 --- !u!222 &222229683297812704
 CanvasRenderer:
   m_ObjectHideFlags: 1

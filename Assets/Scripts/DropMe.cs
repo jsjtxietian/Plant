@@ -24,7 +24,10 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
         if (dropSprite != null)
         {
             //todo MVC
-            receivingImage.sprite = dropSprite;
+            //receivingImage.sprite = dropSprite;
+
+            Coordinate self = gameObject.GetComponent<CommandSpriteController>().GetCoordinate();
+            Instructions.CommandList[self.x, self.y] = Helper.GetTypeFromString(dropSprite.name);
             isInstruction = true;
         }
     }

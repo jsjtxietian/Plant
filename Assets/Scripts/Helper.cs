@@ -7,11 +7,18 @@ public class Helper : MonoBehaviour
 {
     #region SpriteDictionary
 
-    public static GameObject NormalSprite;
+    public GameObject NormalSprite;
     public static Dictionary<Command, Sprite> CommandSpriteDictionary = new Dictionary<Command, Sprite>();
     public static Dictionary<Hand, Sprite> HandSpriteDictionary = new Dictionary<Hand, Sprite>();
 
-    static Helper()
+    public Sprite GetChildSprite(int i)
+    {
+        return NormalSprite.transform.GetChild(i).gameObject.GetComponent<Image>().sprite;
+    }
+
+    #endregion
+
+    void Start()
     {
         CommandSpriteDictionary[Command.Up] = GetChildSprite(0);
         CommandSpriteDictionary[Command.Down] = GetChildSprite(1);
@@ -24,17 +31,6 @@ public class Helper : MonoBehaviour
         HandSpriteDictionary[Hand.Big] = GetChildSprite(7);
         HandSpriteDictionary[Hand.Small] = GetChildSprite(8);
         HandSpriteDictionary[Hand.Human] = GetChildSprite(9);
-    }
-
-    public static Sprite GetChildSprite(int i)
-    {
-        return NormalSprite.transform.GetChild(i).gameObject.GetComponent<Image>().sprite;
-    }
-
-    #endregion
-
-    public static void PrintArray()
-    {
     }
 
     public static void SetTransparent(Image image, float alpha)
@@ -61,4 +57,17 @@ public class Helper : MonoBehaviour
         return Command.None;
     }
 
+    public static int GetChildOrder(GameObject child)
+    {
+        Transform father = child.transform.parent;
+        for (int i = 0; i < father.childCount; i++)
+        {
+            if (father.GetChild(i).gameObject.Equals(child))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
