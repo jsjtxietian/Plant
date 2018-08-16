@@ -2557,7 +2557,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &337683406
 Prefab:
@@ -19029,6 +19029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2088241910}
   - component: {fileID: 2088241909}
+  - component: {fileID: 2088241911}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -19065,8 +19066,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088241911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088241908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c8436f6b1cbe6488ced8db169b5cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalSprite: {fileID: 1660183155}
 --- !u!1001 &2100729612
 Prefab:
   m_ObjectHideFlags: 0

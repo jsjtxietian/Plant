@@ -14,3 +14,10 @@ public enum Command
     Put,
     Pause
 }
+
+public enum Hand
+{
+    Big,
+    Small,
+    Human
+}
