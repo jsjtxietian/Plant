@@ -10,7 +10,7 @@ public class CommandSpriteController : MonoBehaviour
     void Awake()
     {
         GetThisPos();
-        Instructions.CommandObjects[x, y] = gameObject;
+        Instructions.CommandSpriteObjects[x, y] = gameObject;
     }
 
 	// Use this for initialization

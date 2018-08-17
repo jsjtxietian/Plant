@@ -12,8 +12,10 @@ public class Instructions : MonoBehaviour
     public static Command[,] CommandList = new Command[6, 12];
     public static List<Hand> HandList = new List<Hand>();
 
-    public static GameObject[,] CommandObjects = new GameObject[6, 12];
-    public static GameObject[] HandObjects = new GameObject[6];
+    public static List<GameObject> HandObjects = new List<GameObject>();
+
+    public static GameObject[,] CommandSpriteObjects = new GameObject[6, 12];
+    public static GameObject[] HandSpriteObjects = new GameObject[6];
 
     void Start()
     {
@@ -31,13 +33,16 @@ public class Instructions : MonoBehaviour
         UpdateCommandGUI();
     }
 
-    public void AddHand(Hand newHand)
+    public void AddHand(Hand newHand , GameObject newOne)
     {
         if (HandList.Count > 6 || !CheckHandLessThan2(newHand))
             return;
 
         HandList.Add(newHand);
         CommandList[HandList.Count - 1, 0] = Command.Active;
+
+        HandObjects.Add(newOne);
+
         UpdateHandGUI();
         UpdateCommandGUI();
     }
@@ -45,6 +50,9 @@ public class Instructions : MonoBehaviour
     public void DeleteHand(int order)
     {
         HandList.RemoveAt(order);
+
+        Destroy(HandObjects[order]);
+        HandObjects.RemoveAt(order);
 
         for (int i = order; i < 5; i++)
         {
@@ -88,19 +96,19 @@ public class Instructions : MonoBehaviour
             {
                 if (CommandList[i, j] == Command.None)
                 {
-                    CommandObjects[i, j].GetComponent<DropMe>().enabled = false;
-                    CommandObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.None];
-                    Helper.SetTransparent(CommandObjects[i, j].GetComponent<Image>(), 0);
+                    CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = false;
+                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.None];
+                    Helper.SetTransparent(CommandSpriteObjects[i, j].GetComponent<Image>(), 0);
                 }
                 else if (CommandList[i, j] == Command.Active)
                 {
-                    CommandObjects[i, j].GetComponent<DropMe>().enabled = false;
-                    CommandObjects[i, j].GetComponent<DropMe>().enabled = true;
-                    CommandObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.Active];
+                    CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = false;
+                    CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = true;
+                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.Active];
                 }
                 else
                 {
-                    CommandObjects[i, j].GetComponent<Image>().sprite =
+                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite =
                         Helper.CommandSpriteDictionary[CommandList[i, j]];
                 }
             }
@@ -113,11 +121,11 @@ public class Instructions : MonoBehaviour
         {
             if (i < HandList.Count)
             {
-                HandObjects[i].SetActive(true);
-                HandObjects[i].GetComponent<Image>().sprite = Helper.HandSpriteDictionary[HandList[i]];
+                HandSpriteObjects[i].SetActive(true);
+                HandSpriteObjects[i].GetComponent<Image>().sprite = Helper.HandSpriteDictionary[HandList[i]];
             }
             else
-                HandObjects[i].SetActive(false);
+                HandSpriteObjects[i].SetActive(false);
         }
     }
 

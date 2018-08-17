@@ -12,7 +12,7 @@ public class HandSpriteController : MonoBehaviour
     {
         Controller = GameObject.Find("Controller");
         order = FindHandOrder();
-        Instructions.HandObjects[order] = gameObject;
+        Instructions.HandSpriteObjects[order] = gameObject;
     }
 
 	// Use this for initialization
