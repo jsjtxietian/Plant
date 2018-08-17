@@ -52,12 +52,14 @@ public class AddToolController : MonoBehaviour {
         else
         {
             newOne.transform.position = Helper.GetPos(x, y);
-            Debug.Log(newOne.transform.position);
         }
     }
 
     public void AddHandToIns(int x, int y)
     {
+        //todo add to controller
+        if (newOne == null)
+            return;
         Instructions.AddHand(currentType);
         newOne = null;
     }

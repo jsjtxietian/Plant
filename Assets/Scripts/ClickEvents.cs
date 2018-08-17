@@ -59,6 +59,7 @@ public class ClickEvents : MonoBehaviour
     #region Level
 
     public GameObject HintUI;
+    public GameObject Controller;
 
     public void ShowHint()
     {
@@ -68,6 +69,11 @@ public class ClickEvents : MonoBehaviour
     public void HideHint()
     {
         HintUI.SetActive(false);
+    }
+
+    public void ResetCommandArea()
+    {
+        gameObject.GetComponent<Instructions>().ResetCommandArea();
     }
 
     #endregion

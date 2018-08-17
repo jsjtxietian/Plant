@@ -1,5 +1,5 @@
-Left Down None None None None None None Put None None None  
-None None None None None None None None Pick None Pick Pick  
+Active None None None None None None None None None None None  
+None None None None None None None None None None None None  
 None None None None None None None None None None None None  
 None None None None None None None None None None None None  
 None None None None None None None None None None None None  

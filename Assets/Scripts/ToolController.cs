@@ -17,6 +17,9 @@ public class ToolController : MonoBehaviour,IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         Hand type = Helper.GetHandTypeFromString(gameObject.GetComponent<Image>().sprite.name);
-        Controller.GetComponent<AddToolController>().AddHandObject(type);
+        if (Controller.GetComponent<Instructions>().CheckHandLessThan2(type))
+        {
+            Controller.GetComponent<AddToolController>().AddHandObject(type);
+        }
     }
 }

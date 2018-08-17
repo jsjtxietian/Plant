@@ -27,6 +27,8 @@ public class Helper : MonoBehaviour
         CommandSpriteDictionary[Command.Pause] = GetChildSprite(4);
         CommandSpriteDictionary[Command.Put] = GetChildSprite(5);
         CommandSpriteDictionary[Command.Pick] = GetChildSprite(6);
+        CommandSpriteDictionary[Command.None] = GetChildSprite(10);
+        CommandSpriteDictionary[Command.Active] = GetChildSprite(10);
 
         HandSpriteDictionary[Hand.Big] = GetChildSprite(7);
         HandSpriteDictionary[Hand.Small] = GetChildSprite(8);

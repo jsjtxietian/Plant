@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HandSpriteController : MonoBehaviour
 {
-    private int order ;
+    public int order ;
     private GameObject Controller;
 
     void Awake()

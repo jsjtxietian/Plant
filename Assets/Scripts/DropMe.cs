@@ -6,19 +6,25 @@ using UnityEngine.UI;
 public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image receivingImage;
-    private bool isInstruction;
+    private bool alreadyHaveIns;
     public GameObject Controller ;
 
     public void OnEnable()
     {
         Controller = GameObject.Find("Controller");
         Helper.SetTransparent(receivingImage, 0f);
-        isInstruction = false;
+        alreadyHaveIns = false;
+    }
+
+    public void OnDisable()
+    {
+        Helper.SetTransparent(receivingImage, 0f);
+        gameObject.GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.None];
+        alreadyHaveIns = false;
     }
 
     public void OnDrop(PointerEventData data)
     {
-
         if (receivingImage == null)
             return;
 
@@ -30,20 +36,20 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 
             Coordinate self = gameObject.GetComponent<CommandSpriteController>().GetCoordinate();
             Controller.GetComponent<Instructions>().AddCommand(self.x, self.y, Helper.GetCommandTypeFromString(dropSprite.name));
-            isInstruction = true;
+            alreadyHaveIns = true;
         }
     }
 
     public void OnPointerEnter(PointerEventData data)
     {
         Sprite dropSprite = GetDropSprite(data);
-        if (dropSprite != null && !isInstruction)
+        if (dropSprite != null && !alreadyHaveIns)
             Helper.SetTransparent(receivingImage,1f);
     }
 
     public void OnPointerExit(PointerEventData data)
     {
-        if (!isInstruction)
+        if (!alreadyHaveIns)
         {
             Helper.SetTransparent(receivingImage,0f);
         }

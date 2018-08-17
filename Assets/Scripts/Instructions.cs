@@ -17,21 +17,66 @@ public class Instructions : MonoBehaviour
 
     void Start()
     {
-        //UpdateCommandGUI();
+        UpdateHandGUI();
+        UpdateCommandGUI();
     }
 
     public void AddCommand(int x, int y, Command newCommand)
     {
         CommandList[x, y] = newCommand;
+        if (y < 11 && CommandList[x, y + 1] == Command.None)
+        {
+            CommandList[x, y + 1] = Command.Active;
+        }
         UpdateCommandGUI();
     }
 
     public void AddHand(Hand newHand)
     {
-        if (HandList.Count > 6)
+        if (HandList.Count > 6 || !CheckHandLessThan2(newHand))
             return;
+
         HandList.Add(newHand);
+        CommandList[HandList.Count - 1, 0] = Command.Active;
         UpdateHandGUI();
+        UpdateCommandGUI();
+    }
+
+    public void DeleteHand(int order)
+    {
+        HandList.RemoveAt(order);
+
+        for (int i = order; i < 5; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                CommandList[i, j] = CommandList[i + 1, j];
+            }
+        }
+
+        for (int j = 0; j < 12; j++)
+        {
+            CommandList[5, j] = Command.None;
+        }
+
+        UpdateHandGUI();
+        UpdateCommandGUI();
+    }
+
+    public void DeleteCommand(Coordinate tobeDeleted)
+    {
+        if (tobeDeleted.y == 11)
+            CommandList[tobeDeleted.x, 11] = Command.Active;
+        else
+        {
+            for (int j = tobeDeleted.y; j < 11; j++)
+            {
+                CommandList[tobeDeleted.x, j] = CommandList[tobeDeleted.x, j + 1];
+            }
+            CommandList[tobeDeleted.x, 11] = Command.None;
+        }
+
+        UpdateCommandGUI();
     }
 
     public void UpdateCommandGUI()
@@ -44,10 +89,14 @@ public class Instructions : MonoBehaviour
                 if (CommandList[i, j] == Command.None)
                 {
                     CommandObjects[i, j].GetComponent<DropMe>().enabled = false;
+                    CommandObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.None];
+                    Helper.SetTransparent(CommandObjects[i, j].GetComponent<Image>(), 0);
                 }
                 else if (CommandList[i, j] == Command.Active)
                 {
+                    CommandObjects[i, j].GetComponent<DropMe>().enabled = false;
                     CommandObjects[i, j].GetComponent<DropMe>().enabled = true;
+                    CommandObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.Active];
                 }
                 else
                 {
@@ -60,9 +109,15 @@ public class Instructions : MonoBehaviour
 
     public void UpdateHandGUI()
     {
-        for (int i = 0; i < HandList.Count; i++)
+        for (int i = 0; i < 6; i++)
         {
-            HandObjects[i].GetComponent<Image>().sprite = Helper.HandSpriteDictionary[HandList[i]];
+            if (i < HandList.Count)
+            {
+                HandObjects[i].SetActive(true);
+                HandObjects[i].GetComponent<Image>().sprite = Helper.HandSpriteDictionary[HandList[i]];
+            }
+            else
+                HandObjects[i].SetActive(false);
         }
     }
 
@@ -71,9 +126,46 @@ public class Instructions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            //PrintCommandList();
-            UpdateCommandGUI();
+            PrintCommandList();
         }
+    }
+
+    public void ResetCommandArea()
+    {
+        HandList.Clear();
+
+        for (int i = 0; i < 6; i++)
+        for (int j = 0; j < 12; j++)
+            CommandList[i, j] = Command.None;
+
+        UpdateHandGUI();
+        UpdateCommandGUI();
+    }
+
+    public bool CheckHandLessThan2(Hand newHand)
+    {
+        int bigCount = 0, smallCount = 0, humanCount = 0;
+        HandList.Add(newHand);
+
+        HandList.ForEach(x =>
+        {
+            switch (x)
+            {
+                case Hand.Big:
+                    bigCount++;
+                    break;
+                case Hand.Small:
+                    smallCount++;
+                    break;
+                case Hand.Human:
+                    humanCount++;
+                    break;
+            }
+        });
+
+        HandList.RemoveAt(HandList.Count - 1);
+
+        return bigCount <= 2 && smallCount <= 2 && humanCount <= 2;
     }
 
     private void PrintCommandList()
