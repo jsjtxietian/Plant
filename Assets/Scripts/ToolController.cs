@@ -14,13 +14,9 @@ public class ToolController : MonoBehaviour,IPointerClickHandler {
 	    Controller = GameObject.Find("Controller");
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        Controller.GetComponent<Instructions>().AddHand(Helper.GetHandTypeFromString(gameObject.GetComponent<Image>().sprite.name));
+        Hand type = Helper.GetHandTypeFromString(gameObject.GetComponent<Image>().sprite.name);
+        Controller.GetComponent<AddToolController>().AddHandObject(type);
     }
 }

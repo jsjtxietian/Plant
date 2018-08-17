@@ -31,6 +31,8 @@ public class Helper : MonoBehaviour
         HandSpriteDictionary[Hand.Big] = GetChildSprite(7);
         HandSpriteDictionary[Hand.Small] = GetChildSprite(8);
         HandSpriteDictionary[Hand.Human] = GetChildSprite(9);
+
+
     }
 
     public static void SetTransparent(Image image, float alpha)
@@ -80,5 +82,13 @@ public class Helper : MonoBehaviour
         else if (spritename.Contains("human"))
             return Hand.Human;
         else return Hand.None;
+    }
+
+
+    public Transform initPos;
+
+    public Vector3 GetPos(int x , int y)
+    {
+        return new Vector3(initPos.position.x + 0.6f * x, initPos.position.y, initPos.position.z + 0.6f * y);
     }
 }
