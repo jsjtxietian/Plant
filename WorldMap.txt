@@ -1,0 +1,10 @@
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	Exit None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None Normal None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 

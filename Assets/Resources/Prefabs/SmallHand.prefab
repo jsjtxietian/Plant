@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4091278601869534}
   - component: {fileID: 212513565082431652}
+  - component: {fileID: 114402332581085484}
   m_Layer: 0
   m_Name: SmallHand
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 6.373, y: 41.019, z: 0}
+--- !u!114 &114402332581085484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508268389486656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e8bac3805958e42901533e5f338052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212513565082431652
 SpriteRenderer:
   m_ObjectHideFlags: 1

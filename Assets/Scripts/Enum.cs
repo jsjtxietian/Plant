@@ -16,6 +16,29 @@ public enum Command
     Pause
 }
 
+public enum WorldMapElement
+{
+    None,
+    Exit,
+    Flexible
+}
+
+public struct Grid
+{
+    public WorldMapElement map;
+    public ComponentType component;
+    public Hand hand;
+}
+
+public enum ComponentType
+{
+    None,
+    Complex,
+    Fit,
+    Normal,
+    Heavy
+}
+
 public enum Hand
 {
     None,
