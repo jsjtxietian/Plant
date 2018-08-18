@@ -60,6 +60,7 @@ public class AddToolController : MonoBehaviour {
         //todo add to controller
         if (newOne == null)
             return;
+        newOne.SendMessage("SetInitPos",new Coordinate(x,y));
         Instructions.AddHand(currentType,newOne);
         newOne = null;
     }

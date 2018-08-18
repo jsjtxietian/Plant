@@ -34,4 +34,11 @@ public class BigHandController : MonoBehaviour, HandAction
             return false;
         }
     }
+
+    public void SetInitPos(Coordinate pos)
+    {
+        initPos = new Coordinate();
+        initPos.x = pos.x;
+        initPos.y = pos.y;
+    }
 }
