@@ -89,7 +89,6 @@ public class Instructions : MonoBehaviour
 
     public void UpdateCommandGUI()
     {
-        //todo relate to hand
         for (int i = 0; i < 6; i++)
         {
             for (int j = 0; j < 12; j++)
