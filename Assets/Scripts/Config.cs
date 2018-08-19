@@ -21,8 +21,8 @@ public class Config
         //Level 1
         LevelConfig Lv1 = new LevelConfig(1);
         Lv1.ExitPos.Add(new Coordinate(1,6));
-        Lv1.NormalPos.Add(new Coordinate(4, 3));
-        Lv1.NormalPos.Add(new Coordinate(4, 6));
+        Lv1.FitPos.Add(new Coordinate(4, 3));
+        Lv1.FitPos.Add(new Coordinate(4, 6));
         LevelConfigs.Add(Lv1);
 
         //Level2 
@@ -30,7 +30,8 @@ public class Config
         Lv2.ExitPos.Add(new Coordinate(4,4));
         Lv2.FlexiblePos.Add(new Coordinate(4,3));
         Lv2.FlexiblePos.Add(new Coordinate(4,5));
-        //todo add parts
+        Lv2.NormalPos.Add(new Coordinate(3,4));
+        Lv2.ComplexPos.Add(new Coordinate(6,2));
         LevelConfigs.Add(Lv2);
 
         //Level3
@@ -39,7 +40,10 @@ public class Config
         Lv3.ExitPos.Add(new Coordinate(8, 1));
         Lv3.FlexiblePos.Add(new Coordinate(8, 0));
         Lv3.FlexiblePos.Add(new Coordinate(8, 2));
-        //todo add parts
+        Lv3.FlexiblePos.Add(new Coordinate(8, 3));
+        Lv3.NormalPos.Add(new Coordinate(7, 0));
+        Lv3.HeavyPos.Add(new Coordinate(7, 2));
+        Lv3.ComplexPos.Add(new Coordinate(3, 6));
         LevelConfigs.Add(Lv3);
     }
 }
