@@ -9,7 +9,6 @@ public class WorldMapController : MonoBehaviour
     public List<GameObject> Parts = new List<GameObject>();
 
     public GameObject[,] Cubes = new GameObject[10, 10];
-
     private Helper Helper;
 
     void Start()

@@ -1644,7 +1644,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 194432106}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2088241909}
+        m_MethodName: StartButtonBeha
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &194432106
@@ -19586,6 +19597,7 @@ GameObject:
   - component: {fileID: 2088241912}
   - component: {fileID: 2088241913}
   - component: {fileID: 2088241914}
+  - component: {fileID: 2088241915}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -19612,6 +19624,7 @@ MonoBehaviour:
   Video: {fileID: 0}
   HintUI: {fileID: 1367494963}
   Controller: {fileID: 2088241908}
+  StartButton: {fileID: 194432102}
 --- !u!4 &2088241910
 Transform:
   m_ObjectHideFlags: 0
@@ -19675,6 +19688,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parts: []
+--- !u!114 &2088241915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088241908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ea0ae60d3185c47a6e658e38e47a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsGameOn: 0
 --- !u!1001 &2100729612
 Prefab:
   m_ObjectHideFlags: 0
