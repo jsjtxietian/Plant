@@ -78,6 +78,28 @@ public class ClickEvents : MonoBehaviour
 
     #endregion
 
+    #region LevelSelection
+
+    public void GotoLevel1()
+    {
+        PlayerPrefs.SetInt("CurrentLevel",1);
+        SceneManager.LoadScene("Level");
+    }
+
+    public void GotoLevel2()
+    {
+        PlayerPrefs.SetInt("CurrentLevel", 2);
+        SceneManager.LoadScene("Level");
+    }
+
+    public void GotoLevel3()
+    {
+        PlayerPrefs.SetInt("CurrentLevel", 3);
+        SceneManager.LoadScene("Level");
+    }
+
+    #endregion LevelSelection
+
     public void ToLevelSelection()
     {
         SceneManager.LoadScene("LevelSelection");

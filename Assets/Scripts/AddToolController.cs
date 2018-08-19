@@ -6,6 +6,7 @@ public class AddToolController : MonoBehaviour {
 
     private Helper Helper;
     private Instructions Instructions;
+    private WorldMapController WorldMapController;
 
 
     private GameObject newOne = null;
@@ -13,6 +14,7 @@ public class AddToolController : MonoBehaviour {
 
     void Start()
     {
+        WorldMapController = gameObject.GetComponent<WorldMapController>();
         Helper = gameObject.GetComponent<Helper>();
         Instructions = gameObject.GetComponent<Instructions>();
     }
@@ -57,11 +59,16 @@ public class AddToolController : MonoBehaviour {
 
     public void AddHandToIns(int x, int y)
     {
-        //todo add to controller
         if (newOne == null)
             return;
-        newOne.SendMessage("SetInitPos",new Coordinate(x,y));
-        Instructions.AddHand(currentType,newOne);
-        newOne = null;
+
+        Coordinate pos = new Coordinate(x, y);
+
+        if (WorldMapController.CanPlaceHand(pos, currentType))
+        {
+            newOne.SendMessage("SetInitPos", new Coordinate(x, y));
+            Instructions.AddHand(pos, currentType, newOne);
+            newOne = null;
+        }
     }
 }

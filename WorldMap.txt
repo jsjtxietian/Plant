@@ -1,10 +1,10 @@
 None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	Exit None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None Complex None	None None None	None None None	None None None	None None None	None None None	None None None	 
 None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
 None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	Exit None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None Normal None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
-None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	Flexible None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None Heavy None	Flexible None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None None None	Exit None None	None None None	 
+None None None	None None None	None None None	None None None	None None None	None None None	None None None	None Normal None	Flexible None None	None None None	 

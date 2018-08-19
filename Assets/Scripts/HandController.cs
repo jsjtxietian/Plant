@@ -124,5 +124,7 @@ public class HandController : MonoBehaviour
         initPos = new Coordinate();
         initPos.x = pos.x;
         initPos.y = pos.y;
+
+        currentPos = new Coordinate(initPos.x,initPos.y);
     }
 }

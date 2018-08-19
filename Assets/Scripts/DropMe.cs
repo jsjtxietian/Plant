@@ -31,8 +31,6 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
         Sprite dropSprite = GetDropSprite(data);
         if (dropSprite != null)
         {
-            //todo MVC
-            //receivingImage.sprite = dropSprite;
 
             Coordinate self = gameObject.GetComponent<CommandSpriteController>().GetCoordinate();
             Controller.GetComponent<Instructions>().AddCommand(self.x, self.y, Helper.GetCommandTypeFromString(dropSprite.name));

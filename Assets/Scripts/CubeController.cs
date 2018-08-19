@@ -9,12 +9,17 @@ public class CubeController : MonoBehaviour
     private Helper Helper ;
     private AddToolController AddToolController;
 
-	void Start ()
-	{
-	    x = Helper.GetChildOrder(gameObject.transform.parent.gameObject);
-	    y = Helper.GetChildOrder(gameObject.transform.parent.parent.gameObject);
-        AddToolController = GameObject.Find("Controller").GetComponent<AddToolController>();
+    void Awake()
+    {
+        x = Helper.GetChildOrder(gameObject.transform.parent.gameObject);
+        y = Helper.GetChildOrder(gameObject.transform.parent.parent.gameObject);
+        GameObject.Find("Controller").GetComponent<WorldMapController>().Cubes[x, y] = gameObject;
     }
+
+    void Start ()
+	{
+        AddToolController = GameObject.Find("Controller").GetComponent<AddToolController>();
+	}
 
     public void OnMouseEnter()
     {

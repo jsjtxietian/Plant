@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Instructions : MonoBehaviour
 {
     public GameObject CommandsArea;
+    private WorldMapController WorldMapController;
 
     public static Command[,] CommandList = new Command[6, 12];
     public static List<Hand> HandList = new List<Hand>();
@@ -19,6 +20,8 @@ public class Instructions : MonoBehaviour
 
     void Start()
     {
+        WorldMapController = gameObject.GetComponent<WorldMapController>();
+
         UpdateHandGUI();
         UpdateCommandGUI();
     }
@@ -33,10 +36,12 @@ public class Instructions : MonoBehaviour
         UpdateCommandGUI();
     }
 
-    public void AddHand(Hand newHand , GameObject newOne)
+    public void AddHand(Coordinate pos, Hand newHand, GameObject newOne)
     {
         if (HandList.Count > 6 || !CheckHandLessThan2(newHand))
             return;
+
+        WorldMapController.AddHandToMap(pos,newHand);
 
         HandList.Add(newHand);
         CommandList[HandList.Count - 1, 0] = Command.Active;
@@ -49,8 +54,11 @@ public class Instructions : MonoBehaviour
 
     public void DeleteHand(int order)
     {
-        HandList.RemoveAt(order);
+        Coordinate handPos = HandObjects[order].GetComponent<HandController>().currentPos;
 
+        WorldMapController.WorldMap[handPos.x, handPos.y].hand = Hand.None;
+
+        HandList.RemoveAt(order);
         Destroy(HandObjects[order]);
         HandObjects.RemoveAt(order);
 
@@ -96,14 +104,16 @@ public class Instructions : MonoBehaviour
                 if (CommandList[i, j] == Command.None)
                 {
                     CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = false;
-                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.None];
+                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite =
+                        Helper.CommandSpriteDictionary[Command.None];
                     Helper.SetTransparent(CommandSpriteObjects[i, j].GetComponent<Image>(), 0);
                 }
                 else if (CommandList[i, j] == Command.Active)
                 {
                     CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = false;
                     CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = true;
-                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite = Helper.CommandSpriteDictionary[Command.Active];
+                    CommandSpriteObjects[i, j].GetComponent<Image>().sprite =
+                        Helper.CommandSpriteDictionary[Command.Active];
                 }
                 else
                 {
@@ -144,6 +154,8 @@ public class Instructions : MonoBehaviour
         for (int i = 0; i < 6; i++)
         for (int j = 0; j < 12; j++)
             CommandList[i, j] = Command.None;
+
+        HandObjects.Destroy();
 
         UpdateHandGUI();
         UpdateCommandGUI();
