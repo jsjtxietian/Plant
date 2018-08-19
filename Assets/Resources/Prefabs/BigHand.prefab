@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4514376658463872}
   - component: {fileID: 212982322486389314}
-  - component: {fileID: 114682320150749868}
+  - component: {fileID: 114480034406275740}
   m_Layer: 0
   m_Name: BigHand
   m_TagString: Untagged
@@ -35,13 +35,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1274750780801926}
   m_LocalRotation: {x: 0.052066498, y: 0.34981734, z: -0.019476485, w: 0.9351672}
-  m_LocalPosition: {x: 1000, y: 1000, z: 1000}
-  m_LocalScale: {x: 0.06414878, y: 0.064148776, z: 0.06414878}
+  m_LocalPosition: {x: -3.09, y: 0.78, z: -3.03}
+  m_LocalScale: {x: 0.049563568, y: 0.04956354, z: 0.04956356}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 6.373, y: 41.019, z: 0}
---- !u!114 &114682320150749868
+--- !u!114 &114480034406275740
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,9 +49,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1274750780801926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf8b59cbfa39134c9548d62c0541ccb, type: 3}
+  m_Script: {fileID: 11500000, guid: f5eabd4ffcf0a12418d96e57aa2b3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bias: 3
+  thisType: 1
+  Controller: {fileID: 0}
 --- !u!212 &212982322486389314
 SpriteRenderer:
   m_ObjectHideFlags: 1

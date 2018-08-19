@@ -5,10 +5,12 @@ using UnityEngine;
 public class Config
 {
     public static List<LevelConfig> LevelConfigs;
+    public static float RoundTime;
 
     static Config()
     {
         LevelConfigs = new List<LevelConfig>();
+        RoundTime = 3.0f;
 
         //teaching level
         LevelConfig Lv0 = new LevelConfig(0);

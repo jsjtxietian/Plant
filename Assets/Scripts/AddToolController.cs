@@ -51,7 +51,7 @@ public class AddToolController : MonoBehaviour {
         }
         else
         {
-            newOne.transform.position = Helper.GetPos(x, y);
+            newOne.transform.position = Helper.GetHandPos(x, y);
         }
     }
 

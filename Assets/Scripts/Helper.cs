@@ -87,10 +87,22 @@ public class Helper : MonoBehaviour
     }
 
 
-    public Transform initPos;
+    public Transform HandInitPos;
+    public Transform PartInitPos;
+    public Transform ExitInitPos;
 
-    public Vector3 GetPos(int x , int y)
+    public Vector3 GetHandPos(int x , int y)
     {
-        return new Vector3(initPos.position.x + 0.6f * x, initPos.position.y, initPos.position.z + 0.6f * y);
+        return new Vector3(HandInitPos.position.x + 0.6f * x, HandInitPos.position.y, HandInitPos.position.z + 0.6f * y);
+    }
+
+    public Vector3 GetExitPos(int x, int y)
+    {
+        return new Vector3(ExitInitPos.position.x + 0.6f * x, ExitInitPos.position.y, ExitInitPos.position.z + 0.6f * y);
+    }
+
+    public Vector3 GetPartPos(int x, int y)
+    {
+        return new Vector3(PartInitPos.position.x + 0.6f * x, PartInitPos.position.y, PartInitPos.position.z + 0.6f * y);
     }
 }

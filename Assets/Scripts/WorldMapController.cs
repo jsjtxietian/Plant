@@ -7,13 +7,12 @@ public class WorldMapController : MonoBehaviour {
 
     public Grid[,] WorldMap = new Grid[10,10];
 
-	// Use this for initialization
 	void Start () {
 	    ConfigMap();
 	}
 	
-	// Update is called once per frame
 	void Update () {
+
 	    if (Input.GetKeyDown(KeyCode.M))
 	    {
 	        PrintWorldMap();
@@ -40,6 +39,7 @@ public class WorldMapController : MonoBehaviour {
     private void ConfigMap()
     {
         //todo read from playerprefabs
+
         int i = 0;
 
         LevelConfig currentConfig = Config.LevelConfigs[i];
