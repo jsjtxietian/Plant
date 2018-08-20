@@ -14,6 +14,7 @@ public class Instructions : MonoBehaviour
     public static List<Hand> HandList = new List<Hand>();
 
     public static List<GameObject> HandObjects = new List<GameObject>();
+    public static List<GameObject> GroundMasks = new List<GameObject>();
 
     public static GameObject[,] CommandSpriteObjects = new GameObject[6, 12];
     public static GameObject[] HandSpriteObjects = new GameObject[6];
@@ -46,6 +47,11 @@ public class Instructions : MonoBehaviour
         HandList.Add(newHand);
         CommandList[HandList.Count - 1, 0] = Command.Active;
 
+        //spilt ground mask & hand
+        GameObject gm = newOne.transform.GetChild(0).gameObject;
+        GroundMasks.Add(gm);
+        gm.transform.parent = GameObject.Find("GroundMaskContainer").transform;
+
         HandObjects.Add(newOne);
 
         UpdateHandGUI();
@@ -59,8 +65,12 @@ public class Instructions : MonoBehaviour
         WorldMapController.WorldMap[handPos.x, handPos.y].hand = Hand.None;
 
         HandList.RemoveAt(order);
+
         Destroy(HandObjects[order]);
         HandObjects.RemoveAt(order);
+
+        Destroy(GroundMasks[order]);
+        GroundMasks.RemoveAt(order);
 
         for (int i = order; i < 5; i++)
         {

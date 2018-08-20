@@ -127,7 +127,7 @@ public class WorldMapController : MonoBehaviour
         currentConfig.FlexiblePos.ForEach(x =>
         {
             WorldMap[x.x, x.y].map = WorldMapElement.Flexible;
-            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = Color.yellow;
+            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = new Color(255, 237, 174);
         });
     }
 }
