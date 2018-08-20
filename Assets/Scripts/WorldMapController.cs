@@ -39,7 +39,6 @@ public class WorldMapController : MonoBehaviour
         if (hand == Hand.Big || hand == Hand.Small)
         {
             canPlace = canPlace && (WorldMap[pos.x, pos.y].map != WorldMapElement.Flexible);
-            Debug.Log(WorldMap[pos.x, pos.y].map);
         }
 
         return canPlace;
@@ -127,7 +126,8 @@ public class WorldMapController : MonoBehaviour
         currentConfig.FlexiblePos.ForEach(x =>
         {
             WorldMap[x.x, x.y].map = WorldMapElement.Flexible;
-            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = new Color(255, 237, 174);
+            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = Color.yellow;
+            //new Color(255, 237, 174);
         });
     }
 }

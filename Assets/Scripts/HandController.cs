@@ -85,7 +85,10 @@ public class HandController : MonoBehaviour
         }
         else
         {
+            Debug.Log(nextPos.x + "--" + nextPos.y + "---" + Helper.GetHandPos(nextPos.x, nextPos.y));
             transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
+
+            currentPos = nextPos;
             return true;
         }
     }

@@ -30,25 +30,21 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-
             temp.Move(Command.Left);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-
             temp.Move(Command.Down);
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-
             temp.Move(Command.Up);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-
             temp.Move(Command.Right);
         }
     }
