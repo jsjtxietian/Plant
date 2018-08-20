@@ -53,13 +53,33 @@ public class HandController : MonoBehaviour
             if (nextPos.x < initPos.x - bias || nextPos.y < initPos.y - bias)
                 return true;
         }
+
         return false;
     }
 
     public bool Move(Command type)
     {
-        Coordinate nextPos;
+        Coordinate nextPos = GetNextPos(type);
+        if (CheckOutBound(nextPos))
+        {
+            return false;
+        }
+        else
+        {
+            transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
+            currentPos = nextPos;
+            return true;
+        }
+    }
 
+    public Coordinate GetCurrentPos()
+    {
+        return currentPos;
+    }
+
+    public Coordinate GetNextPos(Command type)
+    {
+        Coordinate nextPos;
         switch (type)
         {
             case Command.Up:
@@ -74,23 +94,19 @@ public class HandController : MonoBehaviour
             case Command.Right:
                 nextPos = new Coordinate(currentPos.x + bias, currentPos.y);
                 break;
+            case Command.Pause:
+            case Command.None:
+            case Command.Pick:
+            case Command.Put:
+            case Command.Active:
+                nextPos = new Coordinate(currentPos.x, currentPos.y);
+                break;
             default:
                 nextPos = new Coordinate(-1, -1);
                 break;
         }
 
-        if (CheckOutBound(nextPos))
-        {
-            return false;
-        }
-        else
-        {
-            Debug.Log(nextPos.x + "--" + nextPos.y + "---" + Helper.GetHandPos(nextPos.x, nextPos.y));
-            transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
-
-            currentPos = nextPos;
-            return true;
-        }
+        return nextPos;
     }
 
     public Coordinate GetInitPos()
@@ -122,12 +138,19 @@ public class HandController : MonoBehaviour
         }
     }
 
+    public bool CanStepOn(Coordinate pos, WorldMapElement e)
+    {
+        if ((thisType == Hand.Big || thisType == Hand.Small) && e == WorldMapElement.Flexible)
+            return false;
+        return true;
+    }
+
     public void SetInitPos(Coordinate pos)
     {
         initPos = new Coordinate();
         initPos.x = pos.x;
         initPos.y = pos.y;
 
-        currentPos = new Coordinate(initPos.x,initPos.y);
+        currentPos = new Coordinate(initPos.x, initPos.y);
     }
 }

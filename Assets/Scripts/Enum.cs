@@ -57,4 +57,12 @@ public struct Coordinate
         x = _x;
         y = _y;
     }
+
+    public bool Equal(Coordinate another)
+    {
+        if (another.x == x && another.y == y)
+            return true;
+        else
+            return false;
+    }
 }

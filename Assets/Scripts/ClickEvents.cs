@@ -62,6 +62,7 @@ public class ClickEvents : MonoBehaviour
     public GameObject HintUI;
     public GameObject Controller;
     public GameObject StartButton;
+    public GameObject WrongUI;
 
     public void ShowHint()
     {
@@ -94,6 +95,11 @@ public class ClickEvents : MonoBehaviour
             c.StartGame();
             currentImage.sprite = Resources.Load("Level/Button/stop", typeof(Sprite)) as Sprite;
         }
+    }
+
+    public void GoToInstruct()
+    {
+        WrongUI.SetActive(false);
     }
 
     #endregion

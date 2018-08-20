@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Unity.Linq;
-using UnityEngine.UI;
+using UnityEngine.Experimental.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class Instructions : MonoBehaviour
 {
@@ -146,6 +147,41 @@ public class Instructions : MonoBehaviour
             else
                 HandSpriteObjects[i].SetActive(false);
         }
+    }
+
+    public int GetMaxLength()
+    {
+        int currentMax = 0;
+
+        for (int i = 0; i < 6; i++)
+        {
+            int currentLength = 0;
+
+            for (int j = 0; j < 12; j++)
+            {
+                if(CommandList[i,j] == Command.Active || CommandList[i,j] == Command.None)
+                    break;
+                currentLength++;
+            }
+
+            if (currentLength > currentMax)
+                currentMax = currentLength;
+        }
+
+        return currentMax;
+    }
+
+    public List<Command> GetThisRoundCommand(int round)
+    {
+        List<Command> currentCommands = new List<Command>();
+
+        for (int i = 0; i < HandList.Count; i++)
+        {
+            Command tempCommand = CommandList[i, round];
+            currentCommands.Add(tempCommand);
+        }
+
+        return currentCommands;
     }
 
     // Update is called once per frame
