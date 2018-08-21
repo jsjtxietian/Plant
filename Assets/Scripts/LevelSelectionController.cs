@@ -62,7 +62,7 @@ public class LevelSelectionController : MonoBehaviour
                 SetStar(1);
 
                 AddEvents(2);
-                SetStar(1);
+                SetStar(2);
 
                 AddEvents(3);
                 break;
@@ -71,10 +71,10 @@ public class LevelSelectionController : MonoBehaviour
                 SetStar(1);
 
                 AddEvents(2);
-                SetStar(1);
+                SetStar(2);
 
                 AddEvents(3);
-                SetStar(1);
+                SetStar(3);
 
                 break;
         }

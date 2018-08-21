@@ -78,17 +78,16 @@ public class WorldMapController : MonoBehaviour
 
     public void AfterPut(Coordinate pos , ComponentType type)
     {
-        Grid currentMap = WorldMap[pos.x, pos.y];
-        if (currentMap.map == WorldMapElement.Exit)
+        if (WorldMap[pos.x, pos.y].map == WorldMapElement.Exit)
         {
-            currentMap.component = ComponentType.None;
+            WorldMap[pos.x, pos.y].component = ComponentType.None;
             GameObject tobeRemoved = GetPartByPos(pos);
             Parts.Remove(tobeRemoved);
             Destroy(tobeRemoved);
         }
         else
         {
-            currentMap.component = type;
+            WorldMap[pos.x, pos.y].component = type;
         }
     }
 
