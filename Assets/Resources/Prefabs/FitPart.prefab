@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4443965618286642}
   - component: {fileID: 212919067095700436}
   - component: {fileID: 114585078500303910}
-  - component: {fileID: 114266392607028572}
   m_Layer: 0
   m_Name: FitPart
   m_TagString: Untagged
@@ -42,17 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 6.372, y: 42.293003, z: 0.141}
---- !u!114 &114266392607028572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1600321968436356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02738a84a81198f4b9c40d269ea5648f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114585078500303910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02738a84a81198f4b9c40d269ea5648f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!212 &212919067095700436
 SpriteRenderer:
   m_ObjectHideFlags: 1

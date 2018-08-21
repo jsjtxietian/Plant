@@ -1657,6 +1657,7 @@ GameObject:
   - component: {fileID: 194432107}
   - component: {fileID: 194432106}
   - component: {fileID: 194432105}
+  - component: {fileID: 194432104}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -1682,6 +1683,17 @@ RectTransform:
   m_AnchoredPosition: {x: -398, y: 127}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &194432104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194432102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c088158a8f6b4b743a9ea80959fedd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &194432105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1720,18 +1732,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 194432106}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2088241909}
-        m_MethodName: StartButtonBeha
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &194432106
@@ -19993,7 +19994,6 @@ MonoBehaviour:
   Video: {fileID: 0}
   HintUI: {fileID: 1367494963}
   Controller: {fileID: 2088241908}
-  StartButton: {fileID: 194432102}
   WrongUI: {fileID: 1858450485}
 --- !u!4 &2088241910
 Transform:
@@ -20073,6 +20073,7 @@ MonoBehaviour:
   currentLevel: 0
   SuccessUI: {fileID: 879938007}
   WrongUI: {fileID: 1858450485}
+  StartButton: {fileID: 194432102}
 --- !u!1001 &2100729612
 Prefab:
   m_ObjectHideFlags: 0

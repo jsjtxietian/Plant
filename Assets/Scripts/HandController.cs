@@ -114,6 +114,14 @@ public class HandController : MonoBehaviour
         PickedParts.Clear();
     }
 
+    public void ResetPos()
+    {
+        gameObject.transform.position = Helper.GetHandPos(initPos.x, initPos.y);
+        WorldMapController.WorldMap[initPos.x, initPos.y].hand = thisType;
+        WorldMapController.WorldMap[currentPos.x, currentPos.y].hand = Hand.None;
+        currentPos = initPos;
+    }
+
     public Coordinate GetCurrentPos()
     {
         return currentPos;

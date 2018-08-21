@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Linq;
 using UnityEngine;
 
 public class WorldMapController : MonoBehaviour
 {
     public Grid[,] WorldMap = new Grid[10, 10];
     public List<GameObject> Parts = new List<GameObject>();
+    public List<GameObject> Exits = new List<GameObject>();
 
     public GameObject[,] Cubes = new GameObject[10, 10];
     private Helper Helper;
@@ -25,6 +27,19 @@ public class WorldMapController : MonoBehaviour
         {
             PrintWorldMap();
         }
+    }
+
+    public void ResetMap()
+    {
+        WorldMap = new Grid[10,10];
+
+        Parts.Destroy();
+        Parts.Clear();
+
+        Exits.Destroy();
+        Exits.Clear();
+
+        ConfigMap();
     }
 
     public void AddHandToMap(Coordinate pos, Hand hand)
@@ -114,6 +129,7 @@ public class WorldMapController : MonoBehaviour
             GameObject Exit = (GameObject) Resources.Load("Prefabs/Exit");
             Exit = Instantiate(Exit);
             Exit.transform.position = Helper.GetExitPos(x.x, x.y);
+            Exits.Add(Exit);
         });
 
         //parts
@@ -124,7 +140,7 @@ public class WorldMapController : MonoBehaviour
             GameObject Part = (GameObject) Resources.Load("Prefabs/NormalPart");
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
-            Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Normal;
             Parts.Add(Part);
         });
@@ -136,7 +152,7 @@ public class WorldMapController : MonoBehaviour
             GameObject Part = (GameObject) Resources.Load("Prefabs/FitPart");
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
-            Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Fit;
             Parts.Add(Part);
         });
@@ -148,7 +164,7 @@ public class WorldMapController : MonoBehaviour
             GameObject Part = (GameObject) Resources.Load("Prefabs/HeavyPart");
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
-            Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Heavy;
 
             Parts.Add(Part);
@@ -161,7 +177,7 @@ public class WorldMapController : MonoBehaviour
             GameObject Part = (GameObject) Resources.Load("Prefabs/ComplexPart");
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
-            Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Complex;
             Parts.Add(Part);
         });

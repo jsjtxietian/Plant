@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using Unity.Linq;
 using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 using Image = UnityEngine.UI.Image;
 
 public class Instructions : MonoBehaviour
@@ -26,6 +27,14 @@ public class Instructions : MonoBehaviour
 
         UpdateHandGUI();
         UpdateCommandGUI();
+    }
+
+    public void ResetMap()
+    {
+        HandObjects.ForEach(x =>
+        {
+            x.GetComponent<HandController>().ResetPos();
+        });
     }
 
     public void AddCommand(int x, int y, Command newCommand)
@@ -184,7 +193,6 @@ public class Instructions : MonoBehaviour
         return currentCommands;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -198,13 +206,16 @@ public class Instructions : MonoBehaviour
         HandList.Clear();
 
         for (int i = 0; i < 6; i++)
-        for (int j = 0; j < 12; j++)
-            CommandList[i, j] = Command.None;
+            for (int j = 0; j < 12; j++)
+                CommandList[i, j] = Command.None;
 
         HandObjects.Destroy();
+        HandObjects.Clear();
 
-        UpdateHandGUI();
-        UpdateCommandGUI();
+        //UpdateHandGUI();
+        //UpdateCommandGUI();
+
+        SceneManager.LoadScene("Level");
     }
 
     public bool CheckHandLessThan2(Hand newHand)

@@ -61,7 +61,6 @@ public class ClickEvents : MonoBehaviour
 
     public GameObject HintUI;
     public GameObject Controller;
-    public GameObject StartButton;
     public GameObject WrongUI;
 
     public void ShowHint()
@@ -77,24 +76,6 @@ public class ClickEvents : MonoBehaviour
     public void ResetCommandArea()
     {
         gameObject.GetComponent<Instructions>().ResetCommandArea();
-    }
-
-    public void StartButtonBeha()
-    {
-        GameController c = gameObject.GetComponent<GameController>();
-        bool state = c.IsGameOn;
-        Image currentImage = StartButton.GetComponent<Image>();
-
-        if (state)
-        {
-            c.StopGame();
-            currentImage.sprite = Resources.Load("Level/Button/run", typeof(Sprite)) as Sprite;
-        }
-        else
-        {
-            c.StartGame();
-            currentImage.sprite = Resources.Load("Level/Button/stop", typeof(Sprite)) as Sprite;
-        }
     }
 
     public void GoToInstruct()

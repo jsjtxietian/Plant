@@ -14,10 +14,11 @@ public class GameController : MonoBehaviour
     private Instructions Instructions;
     private List<HandController> HandControllers;
 
+    public GameObject StartButton;
+
     void Awake()
     {
-        //todo read from playerprefabs
-        currentLevel = 1;
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel");
     }
 
     void Start()
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        ResetMap();
         IsGameOn = true;
         StartCoroutine(ExcuteIns());
     }
@@ -36,6 +38,7 @@ public class GameController : MonoBehaviour
     public void StopGame()
     {
         IsGameOn = false;
+        StartButton.GetComponent<StartButtonBeha>().StopGameDueToCrash();
         StopAllCoroutines();
     }
 
@@ -95,6 +98,7 @@ public class GameController : MonoBehaviour
             if (HandControllers[i].CheckOutBound(currentNextPos))
             {
                 GameCrash();
+                Debug.Log("outbound");
                 return;
             }
 
@@ -103,6 +107,7 @@ public class GameController : MonoBehaviour
             if (!HandControllers[i].CanStepOn(currentNextPos, nextGrid.map))
             {
                 GameCrash();
+                Debug.Log("big and small in flexible");
                 return;
             }
 
@@ -114,6 +119,8 @@ public class GameController : MonoBehaviour
                 if (!HandControllers[i].CanPick(type))
                 {
                     GameCrash();
+                    Debug.Log("Pick Error");
+
                     return;
                 }
             }
@@ -127,7 +134,6 @@ public class GameController : MonoBehaviour
             GameCrash();
             return;
         }
-
     }
 
     private void GameCrash()
@@ -160,6 +166,12 @@ public class GameController : MonoBehaviour
         {
             HandControllers.Add(Instructions.HandObjects[i].GetComponent<HandController>());
         }
+    }
+
+    private void ResetMap()
+    {
+        WorldMapController.ResetMap();
+        Instructions.ResetMap();
     }
 
     void Update()
