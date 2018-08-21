@@ -72,7 +72,15 @@ public class GameController : MonoBehaviour
                 SuccessUI.SetActive(true);
                 yield return new WaitForSeconds(Config.RoundTime);
                 PlayerPrefs.SetInt("FinishedLevel", currentLevel);
-                SceneManager.LoadScene("LevelSelection");
+
+                if (currentLevel == 3)
+                {
+                    SceneManager.LoadScene("Congratulation");
+                }
+                else
+                {
+                    SceneManager.LoadScene("LevelSelection");
+                }
             }
 
             yield return new WaitForSeconds(Config.RoundTime);
