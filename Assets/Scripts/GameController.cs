@@ -14,21 +14,22 @@ public class GameController : MonoBehaviour
     private Instructions Instructions;
     private List<HandController> HandControllers;
 
+    void Awake()
+    {
+        //todo read from playerprefabs
+        currentLevel = 1;
+    }
+
     void Start()
     {
         WorldMapController = gameObject.GetComponent<WorldMapController>();
         Instructions = gameObject.GetComponent<Instructions>();
-
         HandControllers = new List<HandController>();
-
-        //todo read from playerprefabs
-        currentLevel = 3;
     }
 
     public void StartGame()
     {
         IsGameOn = true;
-
         StartCoroutine(ExcuteIns());
     }
 
@@ -47,6 +48,21 @@ public class GameController : MonoBehaviour
 
         while (currentIndex < length)
         {
+            //get the ins list
+            List<Command> currentExcuteOnes = Instructions.GetThisRoundCommand(currentIndex);
+
+            //check conflict
+            CheckConflict(currentExcuteOnes);
+            yield return new WaitForEndOfFrame();
+
+            //excute
+            for (int i = 0; i < currentExcuteOnes.Count; i++)
+            {
+                HandControllers[i].Excute(currentExcuteOnes[i]);
+            }
+
+            currentIndex++;
+
             //check whether wins
             if (CheckWin())
             {
@@ -56,17 +72,7 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene("LevelSelection");
             }
 
-            //get the ins list
-            List<Command> currentExcuteOnes = Instructions.GetThisRoundCommand(currentIndex);
-
-            //check conflict
-            CheckConflict(currentExcuteOnes);
-            yield return new WaitForEndOfFrame();
-
-            //excute
-
             yield return new WaitForSeconds(Config.RoundTime);
-            currentIndex++;
         }
     }
 
@@ -94,10 +100,22 @@ public class GameController : MonoBehaviour
 
             //2 . big and small in flexible
             Grid nextGrid = WorldMapController.WorldMap[currentNextPos.x, currentNextPos.y];
-            if (HandControllers[i].CanStepOn(currentNextPos, nextGrid.map))
+            if (!HandControllers[i].CanStepOn(currentNextPos, nextGrid.map))
             {
                 GameCrash();
                 return;
+            }
+
+            //4 . pick none
+            //5 . pick correct ones
+            if (currentExcuteOnes[i] == Command.Pick)
+            {
+                ComponentType type = WorldMapController.WorldMap[currentNextPos.x, currentNextPos.y].component;
+                if (!HandControllers[i].CanPick(type))
+                {
+                    GameCrash();
+                    return;
+                }
             }
 
             NextPoses.Add(currentNextPos);
@@ -110,9 +128,6 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        //todo check 
-        //4 . pick none
-        //5 . pick correct ones
     }
 
     private void GameCrash()
@@ -152,22 +167,32 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Move(Command.Left);
+            temp.Excute(Command.Left);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Move(Command.Down);
+            temp.Excute(Command.Down);
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Move(Command.Up);
+            temp.Excute(Command.Up);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Move(Command.Right);
+            temp.Excute(Command.Right);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
+            temp.Excute(Command.Pick);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
+            temp.Excute(Command.Put);
         }
     }
 }

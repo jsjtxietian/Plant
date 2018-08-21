@@ -5207,6 +5207,7 @@ MonoBehaviour:
   bias: 2
   thisType: 3
   Controller: {fileID: 0}
+  PickedParts: []
 --- !u!212 &577582159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15406,6 +15407,7 @@ MonoBehaviour:
   bias: 2
   thisType: 3
   Controller: {fileID: 0}
+  PickedParts: []
 --- !u!212 &1540018513
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19992,7 +19994,7 @@ MonoBehaviour:
   HintUI: {fileID: 1367494963}
   Controller: {fileID: 2088241908}
   StartButton: {fileID: 194432102}
-  WrongUI: {fileID: 0}
+  WrongUI: {fileID: 1858450485}
 --- !u!4 &2088241910
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class HandController : MonoBehaviour
 
     public GameObject Controller;
     private Helper Helper;
+    private WorldMapController WorldMapController;
+    private Instructions Instructions;
+    public List<GameObject> PickedParts;
 
     void Start()
     {
@@ -34,6 +37,9 @@ public class HandController : MonoBehaviour
 
         Controller = GameObject.Find("Controller");
         Helper = Controller.GetComponent<Helper>();
+        WorldMapController = Controller.GetComponent<WorldMapController>();
+        Instructions = Controller.GetComponent<Instructions>();
+        PickedParts = new List<GameObject>();
     }
 
     public bool CheckOutBound(Coordinate nextPos)
@@ -57,19 +63,55 @@ public class HandController : MonoBehaviour
         return false;
     }
 
-    public bool Move(Command type)
+    public void Move(Command type , Coordinate nextPos)
+    {
+        transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
+        PickedParts.ForEach(x =>
+        {
+            x.transform.DOMove(Helper.GetPartPos(nextPos.x, nextPos.y), Config.RoundTime);
+        });
+        WorldMapController.AfterMove(currentPos,nextPos,thisType);
+        currentPos = nextPos;
+    }
+
+    public void Excute(Command type)
     {
         Coordinate nextPos = GetNextPos(type);
-        if (CheckOutBound(nextPos))
+
+        switch (type)
         {
-            return false;
+            case Command.Pick:
+                Pick(nextPos);
+                break;
+            case Command.Put:
+                Put();
+                break;
+            case Command.Active:
+            case Command.None:
+                break;
+            default://move
+                Move(type , nextPos);
+                break;
         }
-        else
+    }
+
+    private void Pick(Coordinate pos)
+    {
+        GameObject picked = WorldMapController.GetPartByPos(pos);
+        PickedParts.Add(picked);
+        WorldMapController.AfterPick(pos);
+    }
+
+    private void Put()
+    {
+        foreach (var pickedPart in PickedParts)
         {
-            transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
-            currentPos = nextPos;
-            return true;
+            PartController p = pickedPart.GetComponent<PartController>();
+            p.CurrentPos = currentPos;
+            WorldMapController.AfterPut(p.CurrentPos, p.type);
         }
+
+        PickedParts.Clear();
     }
 
     public Coordinate GetCurrentPos()
@@ -119,7 +161,7 @@ public class HandController : MonoBehaviour
         switch (thisType)
         {
             case Hand.Big:
-                if (type == ComponentType.Complex || type == ComponentType.Normal || type == ComponentType.Heavy)
+                if (type == ComponentType.Fit || type == ComponentType.Normal || type == ComponentType.Heavy)
                     return true;
                 else
                     return false;
@@ -133,6 +175,8 @@ public class HandController : MonoBehaviour
                     return true;
                 else
                     return false;
+            case Hand.None:
+                return false;
             default:
                 return false;
         }

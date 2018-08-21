@@ -8,7 +8,6 @@ public class AddToolController : MonoBehaviour {
     private Instructions Instructions;
     private WorldMapController WorldMapController;
 
-
     private GameObject newOne = null;
     private Hand currentType;
 

@@ -10,10 +10,12 @@ public class WorldMapController : MonoBehaviour
 
     public GameObject[,] Cubes = new GameObject[10, 10];
     private Helper Helper;
+    private GameController GameController;
 
     void Start()
     {
         Helper = gameObject.GetComponent<Helper>();
+        GameController = gameObject.GetComponent<GameController>();
         ConfigMap();
     }
 
@@ -44,6 +46,43 @@ public class WorldMapController : MonoBehaviour
         return canPlace;
     }
 
+    public GameObject GetPartByPos(Coordinate pos)
+    {
+        foreach (var p in Parts)
+        {
+            if (p.GetComponent<PartController>().CurrentPos.Equal(pos))
+                return p;
+        }
+        return null;
+    }
+
+    public void AfterPick(Coordinate pos)
+    {
+        WorldMap[pos.x, pos.y].component = ComponentType.None;
+    }
+
+    public void AfterPut(Coordinate pos , ComponentType type)
+    {
+        Grid currentMap = WorldMap[pos.x, pos.y];
+        if (currentMap.map == WorldMapElement.Exit)
+        {
+            currentMap.component = ComponentType.None;
+            GameObject tobeRemoved = GetPartByPos(pos);
+            Parts.Remove(tobeRemoved);
+            Destroy(tobeRemoved);
+        }
+        else
+        {
+            currentMap.component = type;
+        }
+    }
+
+    public void AfterMove(Coordinate origin, Coordinate current, Hand type)
+    {
+        WorldMap[origin.x, origin.y].hand = Hand.None;
+        WorldMap[current.x, current.y].hand = type;
+    }
+
     private void PrintWorldMap()
     {
         StreamWriter s = new StreamWriter("WorldMap.txt");
@@ -63,8 +102,7 @@ public class WorldMapController : MonoBehaviour
 
     private void ConfigMap()
     {
-        //todo read from playerprefabs
-        int i = 3;
+        int i = GameController.currentLevel;
 
         LevelConfig currentConfig = Config.LevelConfigs[i];
 
@@ -87,6 +125,7 @@ public class WorldMapController : MonoBehaviour
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
             Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().type = ComponentType.Normal;
             Parts.Add(Part);
         });
 
@@ -98,6 +137,7 @@ public class WorldMapController : MonoBehaviour
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
             Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().type = ComponentType.Fit;
             Parts.Add(Part);
         });
 
@@ -109,6 +149,8 @@ public class WorldMapController : MonoBehaviour
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
             Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().type = ComponentType.Heavy;
+
             Parts.Add(Part);
         });
 
@@ -120,6 +162,7 @@ public class WorldMapController : MonoBehaviour
             Part = Instantiate(Part);
             Part.transform.position = Helper.GetPartPos(x.x, x.y);
             Part.GetComponent<PartController>().SetPos(x.x, x.y);
+            Part.GetComponent<PartController>().type = ComponentType.Complex;
             Parts.Add(Part);
         });
 
