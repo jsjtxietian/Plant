@@ -10,7 +10,7 @@ public class Config
     static Config()
     {
         LevelConfigs = new List<LevelConfig>();
-        RoundTime = 3.0f;
+        RoundTime = 2.0f;
 
         //teaching level
         LevelConfig Lv0 = new LevelConfig(0);
