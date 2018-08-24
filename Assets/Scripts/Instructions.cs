@@ -124,6 +124,7 @@ public class Instructions : MonoBehaviour
                 if (CommandList[i, j] == Command.None)
                 {
                     CommandSpriteObjects[i, j].GetComponent<DropMe>().enabled = false;
+                    CommandSpriteObjects[i, j].GetComponent<DragMeToDelete>().enabled = false;
                     CommandSpriteObjects[i, j].GetComponent<Image>().sprite =
                         Helper.CommandSpriteDictionary[Command.None];
                     Helper.SetTransparent(CommandSpriteObjects[i, j].GetComponent<Image>(), 0);
@@ -137,6 +138,7 @@ public class Instructions : MonoBehaviour
                 }
                 else
                 {
+                    CommandSpriteObjects[i, j].GetComponent<DragMeToDelete>().enabled = true;
                     CommandSpriteObjects[i, j].GetComponent<Image>().sprite =
                         Helper.CommandSpriteDictionary[CommandList[i, j]];
                 }
