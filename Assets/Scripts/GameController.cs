@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+        //currentLevel = 0;
     }
 
     void Start()
@@ -71,7 +72,12 @@ public class GameController : MonoBehaviour
             {
                 SuccessUI.SetActive(true);
                 yield return new WaitForSeconds(Config.RoundTime);
-                PlayerPrefs.SetInt("FinishedLevel", currentLevel);
+
+                int finishedLevel = PlayerPrefs.GetInt("FinishedLevel");
+                if (currentLevel > finishedLevel)
+                {
+                    PlayerPrefs.SetInt("FinishedLevel", currentLevel);
+                }
 
                 if (currentLevel == 3)
                 {

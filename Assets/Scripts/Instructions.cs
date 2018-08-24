@@ -52,7 +52,7 @@ public class Instructions : MonoBehaviour
         if (HandList.Count > 6 || !CheckHandLessThan2(newHand))
             return;
 
-        WorldMapController.AddHandToMap(pos,newHand);
+        WorldMapController.AddHandToMap(pos, newHand);
 
         HandList.Add(newHand);
         CommandList[HandList.Count - 1, 0] = Command.Active;
@@ -168,7 +168,7 @@ public class Instructions : MonoBehaviour
 
             for (int j = 0; j < 12; j++)
             {
-                if(CommandList[i,j] == Command.Active || CommandList[i,j] == Command.None)
+                if (CommandList[i, j] == Command.Active || CommandList[i, j] == Command.None)
                     break;
                 currentLength++;
             }
@@ -206,8 +206,8 @@ public class Instructions : MonoBehaviour
         HandList.Clear();
 
         for (int i = 0; i < 6; i++)
-            for (int j = 0; j < 12; j++)
-                CommandList[i, j] = Command.None;
+        for (int j = 0; j < 12; j++)
+            CommandList[i, j] = Command.None;
 
         HandObjects.Destroy();
         HandObjects.Clear();
@@ -217,6 +217,31 @@ public class Instructions : MonoBehaviour
 
         SceneManager.LoadScene("Level");
     }
+
+    public void OnDisable()
+    {
+        //public static GameObject[,] CommandSpriteObjects = new GameObject[6, 12];
+        //public static GameObject[] HandSpriteObjects = new GameObject[6];
+
+        HandList.Clear();
+
+        HandObjects.Destroy();
+        HandObjects.Clear();
+
+        GroundMasks.Destroy();
+        GroundMasks.Clear();
+
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                CommandList[i, j] = Command.None;
+            }
+        }
+
+    }
+
+
 
     public bool CheckHandLessThan2(Hand newHand)
     {
