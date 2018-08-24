@@ -9,6 +9,7 @@ public class WorldMapController : MonoBehaviour
     public Grid[,] WorldMap = new Grid[10, 10];
     public List<GameObject> Parts = new List<GameObject>();
     public List<GameObject> Exits = new List<GameObject>();
+    public Material YellowMaterial;
 
     public GameObject[,] Cubes = new GameObject[10, 10];
     private Helper Helper;
@@ -184,7 +185,8 @@ public class WorldMapController : MonoBehaviour
         currentConfig.FlexiblePos.ForEach(x =>
         {
             WorldMap[x.x, x.y].map = WorldMapElement.Flexible;
-            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = Color.yellow;
+            //Cubes[x.x, x.y].GetComponent<MeshRenderer>().material.color = Color.yellow;
+            Cubes[x.x, x.y].GetComponent<MeshRenderer>().material = YellowMaterial;
             //new Color(255, 237, 174);
         });
     }

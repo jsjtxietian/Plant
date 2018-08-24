@@ -20059,6 +20059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parts: []
   Exits: []
+  YellowMaterial: {fileID: 2100000, guid: 403cbf8ca32adb4489c0ac14e81b0545, type: 2}
 --- !u!114 &2088241915
 MonoBehaviour:
   m_ObjectHideFlags: 0
