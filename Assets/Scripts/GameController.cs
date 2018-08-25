@@ -113,8 +113,8 @@ public class GameController : MonoBehaviour
             //1 . out bound
             if (HandControllers[i].CheckOutBound(currentNextPos))
             {
-                GameCrash();
                 Debug.Log("outbound");
+                GameCrash();
                 return;
             }
 
@@ -136,7 +136,17 @@ public class GameController : MonoBehaviour
                 {
                     GameCrash();
                     Debug.Log("Pick Error");
+                    return;
+                }
+            }
 
+            //6.  none when put
+            if (currentExcuteOnes[i] == Command.Put)
+            {
+                if (HandControllers[i].PickedParts.Count == 0)
+                {
+                    GameCrash();
+                    Debug.Log("Put Wrong");
                     return;
                 }
             }
@@ -147,6 +157,7 @@ public class GameController : MonoBehaviour
         //3 . Many in same grid
         if (CheckPosRepeat(NextPoses))
         {
+            Debug.Log(" Many in same grid");
             GameCrash();
             return;
         }
