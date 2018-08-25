@@ -32,7 +32,7 @@ public class WorldMapController : MonoBehaviour
 
     public void ResetMap()
     {
-        WorldMap = new Grid[10,10];
+        WorldMap = new Grid[10, 10];
 
         Parts.Destroy();
         Parts.Clear();
@@ -77,7 +77,7 @@ public class WorldMapController : MonoBehaviour
         WorldMap[pos.x, pos.y].component = ComponentType.None;
     }
 
-    public void AfterPut(Coordinate pos , ComponentType type)
+    public void AfterPut(Coordinate pos, ComponentType type)
     {
         if (WorldMap[pos.x, pos.y].map == WorldMapElement.Exit)
         {
@@ -139,7 +139,9 @@ public class WorldMapController : MonoBehaviour
 
             GameObject Part = (GameObject) Resources.Load("Prefabs/NormalPart");
             Part = Instantiate(Part);
-            Part.transform.position = Helper.GetPartPos(x.x, x.y);
+            Vector3 formalPos = Helper.GetPartPos(x.x, x.y);
+            Part.transform.position = new Vector3(formalPos.x, Part.transform.position.y,
+                formalPos.z);
             Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Normal;
             Parts.Add(Part);
