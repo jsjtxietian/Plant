@@ -51,12 +51,14 @@ public class HandController : MonoBehaviour
 
         if (thisType == Hand.Big || thisType == Hand.Small)
         {
-            if (nextPos.x > initPos.x + bias || nextPos.y > initPos.y + bias)
+            if (nextPos.x > initPos.x + bias || nextPos.y > initPos.y + bias 
+                   || nextPos.x < initPos.x || nextPos.y < initPos.y)
                 return true;
         }
         else
         {
-            if (nextPos.x < initPos.x - bias || nextPos.y < initPos.y - bias)
+            if (nextPos.x < initPos.x - bias || nextPos.y < initPos.y - bias
+                || nextPos.x > initPos.x || nextPos.y > initPos.y)
                 return true;
         }
 
@@ -114,12 +116,14 @@ public class HandController : MonoBehaviour
         PickedParts.Clear();
     }
 
-    public void ResetPos()
+    public void Reset()
     {
         gameObject.transform.position = Helper.GetHandPos(initPos.x, initPos.y);
         WorldMapController.WorldMap[initPos.x, initPos.y].hand = thisType;
         WorldMapController.WorldMap[currentPos.x, currentPos.y].hand = Hand.None;
         currentPos = initPos;
+
+        PickedParts.Clear();
     }
 
     public Coordinate GetCurrentPos()
@@ -205,4 +209,5 @@ public class HandController : MonoBehaviour
 
         currentPos = new Coordinate(initPos.x, initPos.y);
     }
+
 }

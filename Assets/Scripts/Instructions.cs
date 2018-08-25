@@ -33,7 +33,7 @@ public class Instructions : MonoBehaviour
     {
         HandObjects.ForEach(x =>
         {
-            x.GetComponent<HandController>().ResetPos();
+            x.GetComponent<HandController>().Reset();
         });
     }
 
@@ -242,8 +242,6 @@ public class Instructions : MonoBehaviour
         }
 
     }
-
-
 
     public bool CheckHandLessThan2(Hand newHand)
     {

@@ -91,6 +91,8 @@ public class GameController : MonoBehaviour
 
             yield return new WaitForSeconds(Config.RoundTime);
         }
+
+        GameCrash();
     }
 
     private bool CheckWin()
@@ -186,39 +188,11 @@ public class GameController : MonoBehaviour
     {
         WorldMapController.ResetMap();
         Instructions.ResetMap();
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Left);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Down);
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Up);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Right);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Pick);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            HandController temp = Instructions.HandObjects[0].GetComponent<HandController>();
-            temp.Excute(Command.Put);
-        }
+       
     }
 }
