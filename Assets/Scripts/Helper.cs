@@ -107,6 +107,11 @@ public class Helper : MonoBehaviour
         return new Vector3(PartInitPos.position.x + 0.6f * x, PartInitPos.position.y, PartInitPos.position.z + 0.6f * y);
     }
 
+    public Vector3 GetPartPos(int x, int y ,float yPos)
+    {
+        return new Vector3(PartInitPos.position.x + 0.6f * x, yPos, PartInitPos.position.z + 0.6f * y);
+    }
+
     public Vector3 GetTriPos(int x, int y)
     {
         return new Vector3(TriInitPos.position.x + 0.6f * x, TriInitPos.position.y, TriInitPos.position.z + 0.6f * y);

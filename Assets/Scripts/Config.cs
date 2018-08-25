@@ -14,8 +14,8 @@ public class Config
 
         //teaching level
         LevelConfig Lv0 = new LevelConfig(0);
-        Lv0.ExitPos.Add(new Coordinate(5,6));
-        Lv0.NormalPos.Add(new Coordinate(3,3));
+        Lv0.ExitPos.Add(new Coordinate(2,5));
+        Lv0.NormalPos.Add(new Coordinate(5,3));
         LevelConfigs.Add(Lv0);
 
         //Level 1

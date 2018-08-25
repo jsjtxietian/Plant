@@ -139,9 +139,7 @@ public class WorldMapController : MonoBehaviour
 
             GameObject Part = (GameObject) Resources.Load("Prefabs/NormalPart");
             Part = Instantiate(Part);
-            Vector3 formalPos = Helper.GetPartPos(x.x, x.y);
-            Part.transform.position = new Vector3(formalPos.x, Part.transform.position.y,
-                formalPos.z);
+            Part.transform.position = Helper.GetPartPos(x.x, x.y, Part.transform.position.y);
             Part.GetComponent<PartController>().SetInitPos(x.x, x.y);
             Part.GetComponent<PartController>().type = ComponentType.Normal;
             Parts.Add(Part);

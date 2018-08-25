@@ -70,7 +70,16 @@ public class HandController : MonoBehaviour
         transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
         PickedParts.ForEach(x =>
         {
-            x.transform.DOMove(Helper.GetPartPos(nextPos.x, nextPos.y), Config.RoundTime);
+            if (x.GetComponent<PartController>().type == ComponentType.Normal)
+            {
+                Vector3 newPos = Helper.GetPartPos(nextPos.x, nextPos.y);
+                newPos.y = 1.19f;
+                x.transform.DOMove(newPos, Config.RoundTime);
+            }
+            else
+            {
+                x.transform.DOMove(Helper.GetPartPos(nextPos.x, nextPos.y), Config.RoundTime);
+            }
         });
         WorldMapController.AfterMove(currentPos,nextPos,thisType);
         currentPos = nextPos;
