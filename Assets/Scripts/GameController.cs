@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public int currentLevel;
     public GameObject SuccessUI;
     public GameObject WrongUI;
+    public GameObject LittleTri;
 
     private WorldMapController WorldMapController;
     private Instructions Instructions;
@@ -199,11 +200,21 @@ public class GameController : MonoBehaviour
     {
         WorldMapController.ResetMap();
         Instructions.ResetMap();
-
     }
 
-    void Update()
+    public void ShowTri(int order)
     {
-       
+        Coordinate triCor = Instructions.HandObjects[order].GetComponent<HandController>().currentPos;
+
+        StopCoroutine("DisappearTri");
+        LittleTri.transform.position = gameObject.GetComponent<Helper>().GetTriPos(triCor.x,triCor.y);
+        LittleTri.SetActive(true);
+        StartCoroutine("DisappearTri");
+    }
+
+    IEnumerator DisappearTri()
+    {
+        yield return new WaitForSeconds(Config.RoundTime);
+        LittleTri.SetActive(false);
     }
 }

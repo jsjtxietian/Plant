@@ -90,6 +90,7 @@ public class Helper : MonoBehaviour
     public Transform HandInitPos;
     public Transform PartInitPos;
     public Transform ExitInitPos;
+    public Transform TriInitPos;
 
     public Vector3 GetHandPos(int x , int y)
     {
@@ -104,5 +105,10 @@ public class Helper : MonoBehaviour
     public Vector3 GetPartPos(int x, int y)
     {
         return new Vector3(PartInitPos.position.x + 0.6f * x, PartInitPos.position.y, PartInitPos.position.z + 0.6f * y);
+    }
+
+    public Vector3 GetTriPos(int x, int y)
+    {
+        return new Vector3(TriInitPos.position.x + 0.6f * x, TriInitPos.position.y, TriInitPos.position.z + 0.6f * y);
     }
 }

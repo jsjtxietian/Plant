@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HandSpriteController : MonoBehaviour
+public class HandSpriteController : MonoBehaviour , IPointerClickHandler
 {
     public int order ;
     private GameObject Controller;
@@ -24,6 +25,7 @@ public class HandSpriteController : MonoBehaviour
 		
 	}
 
+
     private int FindHandOrder()
     {
         Transform grand = gameObject.transform.parent.parent;
@@ -35,5 +37,8 @@ public class HandSpriteController : MonoBehaviour
         return -1;
     }
 
-   
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Controller.GetComponent<GameController>().ShowTri(order);
+    }
 }
