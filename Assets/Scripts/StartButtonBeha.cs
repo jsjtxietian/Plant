@@ -9,6 +9,7 @@ public class StartButtonBeha : MonoBehaviour ,IPointerClickHandler{
     GameController c ;
     bool state ;
     Image currentImage ;
+    public AudioSource Click;
 
     private Sprite Run;
     private Sprite Stop;
@@ -25,6 +26,7 @@ public class StartButtonBeha : MonoBehaviour ,IPointerClickHandler{
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Click.Play();
         state = c.IsGameOn;
 
         if (state)

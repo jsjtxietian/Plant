@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	public bool dragOnSurfaces = true;
-	
-	private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
+    public AudioSource BeginAudioSource;
+    public AudioSource EndAudioSource;
+    private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
 	private Dictionary<int, RectTransform> m_DraggingPlanes = new Dictionary<int, RectTransform>();
 
 	public void OnBeginDrag(PointerEventData eventData)
@@ -17,9 +18,10 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 		if (canvas == null)
 			return;
 
-		// We have clicked something that can be dragged.
-		// What we want to do is create an icon for this.
-		m_DraggingIcons[eventData.pointerId] = new GameObject("icon");
+	    BeginAudioSource.Play();
+        // We have clicked something that can be dragged.
+        // What we want to do is create an icon for this.
+        m_DraggingIcons[eventData.pointerId] = new GameObject("icon");
 
 		m_DraggingIcons[eventData.pointerId].transform.SetParent (canvas.transform, false);
 		m_DraggingIcons[eventData.pointerId].transform.SetAsLastSibling();
@@ -68,7 +70,10 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 			Destroy(m_DraggingIcons[eventData.pointerId]);
 
 		m_DraggingIcons[eventData.pointerId] = null;
-	}
+
+	    EndAudioSource.Play();
+
+    }
 
 	static public T FindInParents<T>(GameObject go) where T : Component
 	{

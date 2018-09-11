@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     public GameObject WrongUI;
     public GameObject LittleTri;
 
+    public AudioSource GameCrashAudio;
+    public AudioSource DoingGoodAudio;
+
     private WorldMapController WorldMapController;
     private Instructions Instructions;
     private List<HandController> HandControllers;
@@ -28,6 +31,11 @@ public class GameController : MonoBehaviour
         WorldMapController = gameObject.GetComponent<WorldMapController>();
         Instructions = gameObject.GetComponent<Instructions>();
         HandControllers = new List<HandController>();
+
+        if (GameObject.Find("BGM") != null)
+        {
+            Destroy(GameObject.Find("BGM"));
+        }
     }
 
     public void StartGame()
@@ -71,6 +79,7 @@ public class GameController : MonoBehaviour
             //check whether wins
             if (CheckWin())
             {
+                DoingGoodAudio.Play();
                 SuccessUI.SetActive(true);
                 yield return new WaitForSeconds(Config.RoundTime);
 
@@ -166,6 +175,7 @@ public class GameController : MonoBehaviour
 
     private void GameCrash()
     {
+        GameCrashAudio.Play();
         WrongUI.SetActive(true);
         StopGame();
     }
