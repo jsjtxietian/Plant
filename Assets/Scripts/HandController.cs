@@ -7,7 +7,7 @@ public class HandController : MonoBehaviour
 {
     public Coordinate initPos;
     public Coordinate currentPos;
-
+    public AudioSource MoveMusic;
     public int bias;
     public Hand thisType;
 
@@ -22,16 +22,19 @@ public class HandController : MonoBehaviour
         if (gameObject.name.Contains("Big"))
         {
             thisType = Hand.Big;
+            MoveMusic = GameObject.Find("Move2").GetComponent<AudioSource>();
             bias = 3;
         }
         else if (gameObject.name.Contains("Small"))
         {
             thisType = Hand.Small;
+            MoveMusic = GameObject.Find("Move1").GetComponent<AudioSource>();
             bias = 1;
         }
         else if (gameObject.name.Contains("Human"))
         {
             thisType = Hand.Human;
+            MoveMusic = GameObject.Find("Move1").GetComponent<AudioSource>();
             bias = 2;
         }
 
@@ -67,6 +70,7 @@ public class HandController : MonoBehaviour
 
     public void Move(Command type , Coordinate nextPos)
     {
+        MoveMusic.Play();
         transform.DOMove(Helper.GetHandPos(nextPos.x, nextPos.y), Config.RoundTime);
         PickedParts.ForEach(x =>
         {
